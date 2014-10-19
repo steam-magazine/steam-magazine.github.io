@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="content/styles/default.css" />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <title>sTEAM Magazine</title>
+</head>
+<body>
+    <div class="hero row">
+        <img src="content/images/logo.png" alt="sTEAM Magazine" />
+        <h3>SCIENCE - TECHNOLOGY - ENGINEERING - AESTHETICS - MATH</h3>
+    </div>
+
+    <h2>sTEAM is a first-of-its-kind collection of middle school students working to encourage science education and writing in the San Jose Bay Area.</h2>
+
+    <div class="row">
+        <h1>How it Works</h1>
+        <h3>A QUICK OVERVIEW OF OUR CLUB AND HOW IT WORKS</h3>
+
+        <div class="bubbles">
+            <div>
+                <img src="content/images/homepage/bubbles/search.png" alt="SEARCH" />
+                <h1>RESEARCH</h1>
+                <p>
+                    Students research topics in the sTEAM categories that interest them, and learn how to organize and efficiently access the latest scientific references.
+                </p>
+            </div>
+
+            <div>
+                <img src="content/images/homepage/bubbles/write.png" alt="WRITE" />
+                <h1>BLOG</h1>
+                <p>
+                    After researching, students write short, but comprehensive, blog posts on the subject that get posted regularly on the sTEAM website.
+                </p>
+            </div>
+
+            <div>
+                <img src="content/images/homepage/bubbles/mail.png" alt="PUBLISH" />
+                <h1>PUBLISH</h1>
+                <p>
+                    Finally, students work with a core team of editors to refine their blog posts into longer, well-developed pieces that are published twice yearly.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <h1>Explore Our Blogs</h1>
+        <h3 class="blog-filter">
+            <span class="selected">ALL</span> - <span>SCIENCE</span> - <span>TECHNOLOGY</span> - <span>ENGINEERING</span> - <span>AESTHETICS</span> - <span>MATH</span>
+        </h3>
+
+        <div class="blogs">
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        function updatePosts(category) {
+            $.getJSON("/Categories/" + encodeURIComponent(category) + "/Posts/Take/5", function (data) {
+                var toUpdateWith = "";
+
+                for (var p = 0; p < data.length; p++) {
+                    var postDiv = document.createElement("div");
+                    $(postDiv).addClass("post");
+
+                    var postHeader = document.createElement("h1");
+                    postHeader.textContent = data[p].title;
+
+                    var postContents = document.createElement("p");
+                    var trimmedContents = data[p].contents.substr(0, 500);
+                    postContents.textContent = trimmedContents;
+                    postContents.innerHTML += " <a href=\"/Blogs/" + data[p].blogId + "/Posts/" + data[p].id + "\">Read more...</a>";
+
+                    $(postDiv).append(postHeader);
+                    $(postDiv).append(postContents);
+
+                    toUpdateWith += postDiv.outerHTML;
+                }
+
+                $(".blogs").html(toUpdateWith);
+            });
+        }
+
+        updatePosts("ALL");
+
+        $(".blog-filter").children("span").click(function() {
+            $(".blog-filter").children(".selected").removeClass("selected");
+            $(this).addClass("selected");
+            updatePosts($(this).text());
+        });
+    </script>
+</body>
+</html>
