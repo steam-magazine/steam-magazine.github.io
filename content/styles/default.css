@@ -1,4 +1,4 @@
-﻿@import url(http://fonts.googleapis.com/css?family=Lato:300,400,500,700,300);
+﻿@import url(https://fonts.googleapis.com/css?family=Lato:300,400,500,700,300);
 
 body, html {
     width: 100%;
@@ -27,7 +27,7 @@ a {
     }
 
 .hero {
-    background-image: url('/Content/Images/Homepage/mountains.jpg');
+    background-image: url('../images/homepage/mountains.jpg');
     background-size: cover;
     background-position: 0 -400px;
     height: 200px;
