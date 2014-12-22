@@ -54,7 +54,7 @@
         </h3>
 
         <div class="blogs">
-            <div class="post">
+            <div class="post" tags="technology engineering">
                 <h1>Tesla Motors</h1>
                 <h2>By Vivek Iyer</h2>
                 <p>
@@ -63,7 +63,7 @@
                 </p>
             </div>
 
-            <div class="post">
+            <div class="post" tags="science">
                 <h1>Oxygen Sponge</h1>
                 <h2>By Emily Liu</h2>
                 <p>
@@ -72,7 +72,7 @@
                 </p>
             </div>
 
-            <div class="post">
+            <div class="post" tags="technology engineering">
                 <h1>Teleportation: Will it ever happen?</h1>
                 <h2>By Esha Umbarkar</h2>
                 <p>
@@ -81,7 +81,7 @@
                 </p>
             </div>
 
-            <div class="post">
+            <div class="post" tags="science">
                 <h1>Familial Hypercholesterolemia</h1>
                 <h2>By Chinmay Lalgudi</h2>
                 <p>
@@ -90,7 +90,7 @@
                 </p>
             </div>
 
-            <div class="post">
+            <div class="post" tags="science">
                 <h1>Are You Uncomfortable With Your Own Thoughts?</h1>
                 <h2>By Riya Shrivastava</h2>
                 <p>
@@ -99,7 +99,7 @@
                 </p>
             </div>
 
-            <div class="post">
+            <div class="post" tags="technology engineering">
                 <h1>Lego Mindstorms EV3</h1>
                 <h2>By Sophie Guan</h2>
                 <p>
@@ -108,7 +108,7 @@
                 </p>
             </div>
 
-            <div class="post">
+            <div class="post" tags="science">
                 <h1>Hunting Differences Between Owls and Hawks</h1>
                 <h2>By Amanda Chou</h2>
                 <p>
@@ -117,7 +117,7 @@
                 </p>
             </div>
 
-            <div class="post">
+            <div class="post" tags="technology">
                 <h1>Is the iPhone 5c Worth it?</h1>
                 <h2>By Jash Gada</h2>
                 <p>
@@ -129,38 +129,16 @@
     </div>
 
     <script type="text/javascript">
-        function updatePosts(category) {
-            $.getJSON("/Categories/" + encodeURIComponent(category) + "/Posts/Take/5", function (data) {
-                var toUpdateWith = "";
-
-                for (var p = 0; p < data.length; p++) {
-                    var postDiv = document.createElement("div");
-                    $(postDiv).addClass("post");
-
-                    var postHeader = document.createElement("h1");
-                    postHeader.textContent = data[p].title;
-
-                    var postContents = document.createElement("p");
-                    var trimmedContents = data[p].contents.substr(0, 500);
-                    postContents.textContent = trimmedContents;
-                    postContents.innerHTML += " <a href=\"/Blogs/" + data[p].blogId + "/Posts/" + data[p].id + "\">Read more...</a>";
-
-                    $(postDiv).append(postHeader);
-                    $(postDiv).append(postContents);
-
-                    toUpdateWith += postDiv.outerHTML;
-                }
-
-                $(".blogs").html(toUpdateWith);
-            });
-        }
-
-        updatePosts("ALL");
-
         $(".blog-filter").children("span").click(function() {
             $(".blog-filter").children(".selected").removeClass("selected");
             $(this).addClass("selected");
-            updatePosts($(this).text());
+            var category = $(this).text().toLowerCase();
+            if(category == "all") {
+                $(".post").show();
+            } else {
+                $(".post").hide();
+                $(".post[tags*=\"" + category + "\"]").show();
+            }
         });
     </script>
 </body>
