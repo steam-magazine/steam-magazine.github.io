@@ -48,12 +48,36 @@
     </div>
 
     <div class="row">
+        <h1>News</h1>
+
+        <div class="blogs">
+            <div class="post" tags="technology">
+                <h1>The First SEARCH Showcase Event</h1>
+                <h2>By Pranav Lalgudi</h2>
+                <p>
+                    The first ever SEARCH showcase event took place on December 18, 2014. After a semester of incredibly hard work and learning, selected SEARCH class students were given the huge opportunity to talk about their ideas, which had blossomed into companies, to a large audience in the Miller library. This was the culmination of learning and perseverance over 15 weeks, learning how to use computer software such as TinkerCAD and Weebly to help build their businesses.
+                    <a href="news/showcase/pranav.html">Read more...</a>
+                </p>
+            </div>
+
+            <div class="post" tags="technology">
+                <h1>Magical Lunchboxes?!</h1>
+                <h2>By Marilyn Zhang</h2>
+                <p>
+                    Now, let me start out this piece with a slight disclaimer: I love science and everything about it, so I come from an extremely biased point of view in that I’ll say that everything is simply amazing as long as it is science-related. Which means that I’m not so easily impressed. I read scientific articles everyday and have been a little jaded by all the cool things scientists make everyday. So, everything is simply amazing, and not much more. Usually.
+                    <a href="news/showcase/marilyn.html">Read more...</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
         <h1>Explore Our Blogs</h1>
         <h3 class="blog-filter">
             <span class="selected">ALL</span> - <span>SCIENCE</span> - <span>TECHNOLOGY</span> - <span>ENGINEERING</span> - <span>AESTHETICS</span> - <span>MATH</span>
         </h3>
 
-        <div class="blogs">
+        <div class="blogs" id="student-blogs">
             <div class="post" tags="technology">
                 <h1>Apple Watch</h1>
                 <h2>By Srita Kothuri</h2>
@@ -145,8 +169,8 @@
             if(category == "all") {
                 $(".post").show();
             } else {
-                $(".post").hide();
-                $(".post[tags*=\"" + category + "\"]").show();
+                $("#student-blogs .post").hide();
+                $("#student-blogs .post[tags*=\"" + category + "\"]").show();
             }
         });
     </script>
