@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="../../content/styles/default.css" />
+    <link rel="stylesheet" href="../../content/styles/presentation-wedge.css" />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.rawgit.com/matthewsot/wedge/64fac6093b2a954c08d2bfa01e50bbb05e76354d/wedge.min.js"></script>
+    <title>sTEAM Magazine</title>
+</head>
+<body>
+    <div class="hero row">
+        <a href="/" style="border: 0;"><img src="../../content/images/logo.png" alt="sTEAM Magazine"/></a>
+        <h3>SCIENCE - TECHNOLOGY - ENGINEERING - AESTHETICS - MATH</h3>
+        <h2>steamsciencepublication@gmail.com</h2>
+    </div>
+
+    <h1>TinkerCAD Powerpoints</h1>
+    <p style="width:80%; margin: 0 auto; margin-top: 30px; font-size: 25px;">
+        <ul>
+            <li><a href="https://docs.google.com/presentation/d/1mr2KFbPNOe3TNe2U1oRNywqK10bsPK5nX0p3zKCiAm8/embed#slide=id.p4" id="togepi">3D Togepi - Shannon D. and Geethika J.</a></li>
+            <li><a href="https://docs.google.com/presentation/d/1TyHpET_6WZ3wf3e25IZDyM_pkdEgk2zRPjRXQFyjhvc/embed#slide=id.p4" id="pokemon-marill">Pokemon Marill - Joshua Wong and Neil Warke</a></li>
+            <li><a href="https://docs.google.com/presentation/d/1STUyhDuSQmQ3S-6ui6ZmE6Z3clWqzfyyDdR_sjI6dJI/embed#slide=id.p7" id="solar-gold">Solar Gold - Ashley Song, Nicki Hashemi, Serena Daniel, and Priya Ram</a></li>
+        </ul>
+    </p>
+
+    <div id="presentation-wedge">
+    </div>
+
+    <script type="text/javascript">
+        $("li a").click(function (e) {
+            e.preventDefault();
+            $("#presentation-wedge").html("").append($("<iframe></iframe>", { "src": $(this).attr("href") }));
+            wedge.show("#presentation-wedge", {
+                autoPositionType: 2
+            });
+        });
+    </script>
+</body>
+</html>
